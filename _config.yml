@@ -3,7 +3,6 @@ description: Isaac Lab、Isaac Sim、Go2 强化学习与 Sim-to-Real 学习总�
 lang: zh-CN
 url: "https://wugu-art.github.io"
 baseurl: "/isaac-rl-notes"
-repository_url: "https://github.com/Wugu-art/isaac-rl-notes"
 markdown: kramdown
 permalink: pretty
 kramdown:
