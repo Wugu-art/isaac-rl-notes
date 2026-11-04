@@ -1,5 +1,6 @@
 (() => {
   const root = document.documentElement;
+  root.classList.add('has-js');
   const header = document.querySelector('[data-site-header]');
   const progress = document.querySelector('[data-progress]');
   const navToggle = document.querySelector('.nav-toggle');
@@ -99,6 +100,48 @@
     };
     buttons.forEach((button) => button.addEventListener('click', () => selectCategory(button.dataset.noteCategory)));
     if (buttons.length) selectCategory(buttons[0].dataset.noteCategory);
+  });
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ambientVideos = [...document.querySelectorAll('[data-ambient-video]')];
+  const videoObserver = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
+    entries.forEach(({ target: video, isIntersecting }) => {
+      video.dataset.inView = String(isIntersecting);
+      if (!isIntersecting || document.hidden) video.pause();
+      else if (!reducedMotion && video.dataset.userPaused !== 'true') video.play().catch(() => {});
+    });
+  }, { threshold: 0.2 }) : null;
+
+  ambientVideos.forEach((video) => {
+    const button = video.closest('.film-frame')?.querySelector('[data-video-toggle]');
+    const updateButton = () => {
+      if (!button) return;
+      const playing = !video.paused;
+      button.setAttribute('aria-label', `${playing ? '暂停' : '播放'}${video.closest('.hero-film') ? ' Go2' : '仿真'}视频`);
+      button.setAttribute('aria-pressed', String(playing));
+      button.querySelector('span').textContent = playing ? 'Ⅱ' : '▶';
+    };
+    video.addEventListener('play', updateButton);
+    video.addEventListener('pause', updateButton);
+    video.addEventListener('error', () => { if (button) button.hidden = true; });
+    button?.addEventListener('click', () => {
+      if (video.paused) {
+        video.dataset.userPaused = 'false';
+        video.play().catch(() => {});
+      } else {
+        video.dataset.userPaused = 'true';
+        video.pause();
+      }
+    });
+    if (reducedMotion) { video.autoplay = false; video.pause(); }
+    videoObserver?.observe(video);
+    updateButton();
+  });
+  document.addEventListener('visibilitychange', () => {
+    ambientVideos.forEach((video) => {
+      if (document.hidden) video.pause();
+      else if (!reducedMotion && video.dataset.inView === 'true' && video.dataset.userPaused !== 'true') video.play().catch(() => {});
+    });
   });
 
   const article = document.querySelector('.prose');
