@@ -1,0 +1,24 @@
+{% assign outline_categories = "环境与资产|仿真基础|强化学习|Sim-to-Real" | split: "|" %}
+<aside class="learning-outline" aria-label="学习路线大纲">
+  <details class="learning-outline-disclosure" data-learning-outline open>
+    <summary>学习大纲 <span class="outline-chevron" aria-hidden="true"></span></summary>
+    <nav aria-label="学习路线章节">
+      <a class="learning-outline-home{% if page.url == '/Isaac学习内容/00_阅读索引/' %} is-current{% endif %}" href="{{ '/Isaac学习内容/00_阅读索引/' | relative_url }}"{% if page.url == '/Isaac学习内容/00_阅读索引/' %} aria-current="page"{% endif %}>学习导航</a>
+      {% for category in outline_categories %}
+        {% assign outline_notes = site.pages | where: "category", category | sort: "title" %}
+        <details class="learning-outline-group"{% if page.category == category or page.category == nil and forloop.first %} open{% endif %}>
+          <summary><span>{{ category }}</span><small>{{ outline_notes.size }}</small><span class="outline-chevron" aria-hidden="true"></span></summary>
+          <div class="learning-outline-links">
+            {% if outline_notes.size > 0 %}
+              {% for note in outline_notes %}
+                <a href="{{ note.url | relative_url }}"{% if note.url == page.url %} class="is-current" aria-current="page"{% endif %}>{{ note.title | default: note.basename }}</a>
+              {% endfor %}
+            {% else %}
+              <p>笔记整理中</p>
+            {% endif %}
+          </div>
+        </details>
+      {% endfor %}
+    </nav>
+  </details>
+</aside>

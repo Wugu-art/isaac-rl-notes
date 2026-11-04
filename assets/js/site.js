@@ -5,6 +5,13 @@
   const progress = document.querySelector('[data-progress]');
   const navToggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.site-nav');
+  const learningOutline = document.querySelector('[data-learning-outline]');
+  if (learningOutline) {
+    const narrowOutline = window.matchMedia('(max-width: 960px)');
+    const syncOutline = () => { learningOutline.open = !narrowOutline.matches; };
+    syncOutline();
+    narrowOutline.addEventListener('change', syncOutline);
+  }
   const themeToggle = document.querySelector('[data-theme-toggle]');
   const updateThemeToggle = () => {
     if (!themeToggle) return;
