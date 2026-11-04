@@ -5,9 +5,9 @@ tags: [IsaacLab, IsaacSim, Python, 启动器, Obsidian]
 source: https://docs.robotsfan.com/isaaclab/source/how-to/launch_app.html
 section: 学习路线
 updated: 2026-11-04
-prev_url: /Isaac学习内容/02_生成基本物体到场景.html
+prev_url: /Isaac学习内容/02_生成基本物体到场景/
 prev_label: 生成基本物体到场景
-next_url: /笔记库.html
+next_url: /笔记库/
 next_label: 浏览完整笔记库
 ---
 

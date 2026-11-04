@@ -36,10 +36,10 @@
 
       <nav class="site-nav" id="site-nav" aria-label="主导航">
         <a href="{{ '/' | relative_url }}">首页</a>
-        <a href="{{ '/Isaac学习内容/00_阅读索引.html' | relative_url }}">学习路线</a>
-        <a href="{{ '/笔记库.html' | relative_url }}">笔记库</a>
+        <a href="{{ '/Isaac学习内容/00_阅读索引/' | relative_url }}">学习路线</a>
+        <a href="{{ '/笔记库/' | relative_url }}">笔记库</a>
         <a href="{{ '/学习日志/' | relative_url }}">学习日志</a>
-        <a href="{{ '/关于.html' | relative_url }}">关于</a>
+        <a href="{{ '/关于/' | relative_url }}">关于</a>
         <button class="search-toggle" type="button" data-search-open aria-label="搜索全站" title="搜索（Ctrl/⌘ + K）">
           <span aria-hidden="true">⌕</span><span class="search-label">搜索</span>
         </button>
@@ -59,7 +59,7 @@
             <a href="{{ '/' | relative_url }}">首页</a>
             <span aria-hidden="true">/</span>
             {% if page.section == '学习路线' %}
-              <a href="{{ '/Isaac学习内容/00_阅读索引.html' | relative_url }}">学习路线</a>
+              <a href="{{ '/Isaac学习内容/00_阅读索引/' | relative_url }}">学习路线</a>
               <span aria-hidden="true">/</span>
             {% elsif page.section == '学习日志' %}
               <a href="{{ '/学习日志/' | relative_url }}">学习日志</a>
@@ -100,8 +100,8 @@
         <p><strong>Isaac Lab × Go2</strong><br><span>持续学习，持续验证。</span></p>
       </div>
       <nav aria-label="页脚导航">
-        <a href="{{ '/笔记库.html' | relative_url }}">全部笔记</a>
-        <a href="{{ '/发布指南.html' | relative_url }}">发布指南</a>
+        <a href="{{ '/笔记库/' | relative_url }}">全部笔记</a>
+        <a href="{{ '/发布指南/' | relative_url }}">发布指南</a>
         <a href="{{ site.repository_url }}" rel="external">GitHub</a>
       </nav>
       <p>Public learning archive · {{ site.time | date: '%Y' }}</p>

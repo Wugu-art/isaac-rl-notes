@@ -11,9 +11,9 @@ source_updated: 2026-10-20
 description: Isaac Lab 新版 uv 工作流、训练回放、物理后端、日志与检查点命令速查
 section: 学习路线
 updated: 2026-11-04
-prev_url: /Isaac学习内容/00_部署与Go2项目流程.html
+prev_url: /Isaac学习内容/00_部署与Go2项目流程/
 prev_label: 部署与 Go2 项目流程
-next_url: /Isaac学习内容/IsaacLab_HowTo_操作指南学习笔记.html
+next_url: /Isaac学习内容/IsaacLab_HowTo_操作指南学习笔记/
 next_label: How-to 操作指南总览
 ---
 

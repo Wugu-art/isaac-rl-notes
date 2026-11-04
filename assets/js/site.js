@@ -84,7 +84,7 @@
   const currentPath = decodeURI(window.location.pathname).replace(/index\.html$/, '');
   document.querySelectorAll('.site-nav a').forEach((link) => {
     const path = decodeURI(new URL(link.href, window.location.href).pathname).replace(/index\.html$/, '');
-    const learningSection = currentPath.includes('/Isaac学习内容/') && path.endsWith('/Isaac学习内容/00_阅读索引.html');
+    const learningSection = currentPath.includes('/Isaac学习内容/') && path.endsWith('/Isaac学习内容/00_阅读索引/');
     if (path === currentPath || learningSection || (path !== '/' && currentPath.startsWith(path.replace(/\.html$/, '')))) {
       link.setAttribute('aria-current', 'page');
     }
