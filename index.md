@@ -53,26 +53,63 @@ home: true
   </div>
 </section>
 
-<section class="chapter-section" id="path" aria-labelledby="path-title">
-  <div class="chapter-head" data-reveal>
-    <p class="eyebrow">The learning path</p>
-    <h2 id="path-title"><a href="{{ '/Isaac学习内容/00_阅读索引/' | relative_url }}">四个阶段，<br><span>持续向前。</span></a></h2>
-    <a class="text-link" href="Isaac学习内容/00_阅读索引/">进入学习路线 <span aria-hidden="true">↗</span></a>
+<section class="story-section" id="experiment" aria-labelledby="story-title" data-story>
+  <div class="story-heading" data-reveal>
+    <p class="eyebrow">From scene to policy</p>
+    <h2 id="story-title">一次实验，<span>四次推进。</span></h2>
   </div>
-  <div class="chapter-list" data-reveal>
-    <div class="chapter-item"><span>01</span><strong>环境与资产</strong><i aria-hidden="true"></i></div>
-    <div class="chapter-item"><span>02</span><strong>仿真基础</strong><i aria-hidden="true"></i></div>
-    <div class="chapter-item"><span>03</span><strong>强化学习</strong><i aria-hidden="true"></i></div>
-    <div class="chapter-item"><span>04</span><strong>Sim-to-Real</strong><i aria-hidden="true"></i></div>
+  <div class="story-layout">
+    <div class="story-scene" data-story-scene data-stage="1" aria-hidden="true">
+      <div class="story-scene-top"><span>ISAAC / EXPERIMENT 01</span><span>SCHEMATIC MOTION</span></div>
+      <div class="story-viewport">
+        <div class="story-grid"></div>
+        <div class="story-horizon"></div>
+        <div class="story-obstacle story-obstacle-one"></div>
+        <div class="story-obstacle story-obstacle-two"></div>
+        <div class="story-robot"><i></i><i></i><i></i><i></i><span>GO2</span></div>
+        <svg class="story-route" viewBox="0 0 600 390" preserveAspectRatio="none"><path d="M48 282 C130 315 190 225 278 256 S418 190 552 142"></path></svg>
+        <div class="story-target"></div>
+        <div class="story-signal story-signal-a"></div>
+        <div class="story-signal story-signal-b"></div>
+      </div>
+      <div class="story-scene-bottom"><span data-story-counter>01 / 04</span><span>流程示意 · 非训练数据</span></div>
+    </div>
+    <div class="story-steps">
+      <article class="story-step" data-story-step="1">
+        <span class="story-step-index">01 / WORLD</span>
+        <h3>搭建世界。</h3>
+        <p>环境、资产与地形。</p>
+        <a href="{{ '/Isaac学习内容/00_部署与Go2项目流程/' | relative_url }}">从部署开始 ↗</a>
+      </article>
+      <article class="story-step" data-story-step="2">
+        <span class="story-step-index">02 / SIMULATION</span>
+        <h3>启动仿真。</h3>
+        <p>让机器人与场景开始交互。</p>
+        <a href="{{ '/Isaac学习内容/01_创建空场景/' | relative_url }}">查看仿真基础 ↗</a>
+      </article>
+      <article class="story-step" data-story-step="3">
+        <span class="story-step-index">03 / LEARNING</span>
+        <h3>训练策略。</h3>
+        <p>从观测、动作到奖励。</p>
+        <a href="{{ '/笔记/强化学习/Go2训练实验记录清单/' | relative_url }}">查看训练记录 ↗</a>
+      </article>
+      <article class="story-step" data-story-step="4">
+        <span class="story-step-index">04 / TRANSFER</span>
+        <h3>走向现实。</h3>
+        <p>验证泛化与 Sim-to-Real。</p>
+        <a href="#path">探索学习地图 ↗</a>
+      </article>
+    </div>
   </div>
 </section>
 
-<section class="section directory-section" id="notes">
-  <div class="section-heading" data-reveal>
-    <h2>继续探索。</h2>
-    <p>按主题阅读学习笔记。</p>
+<section class="learning-map-section" id="path" aria-labelledby="path-title">
+  <div class="learning-map-heading" data-reveal>
+    <p class="eyebrow">The learning map</p>
+    <h2 id="path-title">沿着轨迹，<span>继续深入。</span></h2>
+    <a class="text-link" href="{{ '/Isaac学习内容/00_阅读索引/' | relative_url }}">完整学习路线 <span aria-hidden="true">↗</span></a>
   </div>
-  {% include note-browser.html %}
+  {% include learning-map.html %}
 </section>
 
 <section class="guestbook-section" id="guestbook" aria-labelledby="guestbook-title">

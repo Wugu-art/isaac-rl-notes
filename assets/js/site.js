@@ -170,6 +170,61 @@
     if (buttons.length) selectCategory(buttons[0].dataset.noteCategory);
   });
 
+  const story = document.querySelector('[data-story]');
+  if (story) {
+    const scene = story.querySelector('[data-story-scene]');
+    const steps = [...story.querySelectorAll('[data-story-step]')];
+    const counter = story.querySelector('[data-story-counter]');
+    let active = 0;
+    let frame = 0;
+    const setStage = (stage) => {
+      if (stage === active) return;
+      active = stage;
+      scene.dataset.stage = String(stage);
+      counter.textContent = `0${stage} / 04`;
+      steps.forEach((step) => step.classList.toggle('is-active', Number(step.dataset.storyStep) === stage));
+    };
+    const updateStage = () => {
+      frame = 0;
+      const marker = window.innerHeight * 0.51;
+      let nearest = steps[0];
+      let distance = Infinity;
+      steps.forEach((step) => {
+        const rect = step.getBoundingClientRect();
+        const current = Math.abs((rect.top + rect.bottom) / 2 - marker);
+        if (current < distance) { distance = current; nearest = step; }
+      });
+      setStage(Number(nearest.dataset.storyStep));
+    };
+    const scheduleStage = () => { if (!frame) frame = requestAnimationFrame(updateStage); };
+    window.addEventListener('scroll', scheduleStage, { passive: true });
+    window.addEventListener('resize', scheduleStage);
+    steps.forEach((step) => step.addEventListener('focusin', () => setStage(Number(step.dataset.storyStep))));
+    updateStage();
+  }
+
+  document.querySelectorAll('[data-learning-map]').forEach((map) => {
+    const buttons = [...map.querySelectorAll('[data-map-category]')];
+    const panels = [...map.querySelectorAll('[data-map-panel]')];
+    const selectCategory = (category) => {
+      buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.mapCategory === category)));
+      panels.forEach((panel) => { panel.hidden = panel.dataset.mapPanel !== category; });
+    };
+    buttons.forEach((button, index) => {
+      button.addEventListener('click', () => selectCategory(button.dataset.mapCategory));
+      button.addEventListener('keydown', (event) => {
+        const next = event.key === 'ArrowRight' ? index + 1 : event.key === 'ArrowLeft' ? index - 1 : event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : -1;
+        if (next < 0 && event.key !== 'ArrowLeft') return;
+        if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const target = buttons[(next + buttons.length) % buttons.length];
+        target.focus();
+        selectCategory(target.dataset.mapCategory);
+      });
+    });
+    if (buttons.length) selectCategory(buttons[0].dataset.mapCategory);
+  });
+
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const ambientVideos = [...document.querySelectorAll('[data-ambient-video]')];
   const videoObserver = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {

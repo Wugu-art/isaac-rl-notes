@@ -1,0 +1,30 @@
+{% assign map_categories = "环境与资产|仿真基础|强化学习|Sim-to-Real" | split: "|" %}
+<div class="learning-map" data-learning-map>
+  <div class="map-track" aria-label="学习阶段">
+    {% for category in map_categories %}
+      {% assign category_notes = site.pages | where: "category", category %}
+      <button class="map-stop" type="button" data-map-category="{{ category }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="map-panel-{{ forloop.index }}">
+        <span class="map-stop-node"><span>0{{ forloop.index }}</span></span>
+        <strong>{{ category }}</strong>
+        <small>{{ category_notes.size }} 篇笔记</small>
+      </button>
+    {% endfor %}
+  </div>
+  <div class="map-detail">
+    {% for category in map_categories %}
+      {% assign category_notes = site.pages | where: "category", category | sort: "title" %}
+      <section class="map-panel" id="map-panel-{{ forloop.index }}" data-map-panel="{{ category }}" aria-label="{{ category }}">
+        <div class="map-panel-head"><span>STAGE 0{{ forloop.index }}</span><h3>{{ category }}</h3></div>
+        {% if category_notes.size > 0 %}
+          <ul>
+            {% for note in category_notes %}
+              <li><a href="{{ note.url | relative_url }}"><span>{{ note.title | default: note.basename }}</span><span aria-hidden="true">↗</span></a></li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="map-empty">这一阶段的笔记正在整理。</p>
+        {% endif %}
+      </section>
+    {% endfor %}
+  </div>
+</div>
