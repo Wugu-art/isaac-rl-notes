@@ -130,10 +130,10 @@ LIVESTREAM=2 uv run python scripts/tutorials/00_sim/launch_app.py
 
 `LIVESTREAM=2` 是给这一次命令设置环境变量；`--livestream 2` 是直接向脚本传参。**同一选项冲突时，命令行参数优先。**
 
-## 六、你当前 Isaac Lab 2.3.2 的兼容性提醒
+## 六、Isaac Lab 2.3.2 的兼容性提醒
 
 > [!warning] 重要：不要直接复制新版 API
-> 这篇文档使用新版 `add_launcher_args` 和 `launch_simulation`。你此前的 Isaac Lab 2.3.2 项目主要使用 `AppLauncher`，并曾遇到 `cannot import name 'launch_simulation'`。因此不要直接在旧环境里运行本篇代码。
+> 这篇文档使用新版 `add_launcher_args` 和 `launch_simulation`。Isaac Lab 2.3.2 项目主要使用 `AppLauncher`，可能遇到 `cannot import name 'launch_simulation'`。因此不要直接在旧环境里运行本篇代码。
 
 旧版常见启动结构（**仅展示启动方式差异**）：
 
@@ -158,7 +158,7 @@ simulation_app.close()
 
 ## 七、Go2 强化学习中怎么用？
 
-你以后运行 Go2 训练时，启动参数主要用于：
+运行 Go2 训练时，启动参数主要用于：
 
 1. **指定 GPU**：例如 `cuda:0`。
 2. **选择是否显示界面**：大量并行训练通常使用无界面模式（具体参数以训练脚本支持的选项为准）。

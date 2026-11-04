@@ -217,16 +217,16 @@ uv run isaaclab --editor
 uv run --extra isaacsim isaaclab --editor
 ```
 
-## 11. 你的 Isaac Lab 2.3.2：不要直接照搬新版 CLI
+## 11. Isaac Lab 2.3.2：不要直接照搬新版 CLI
 
-当前旧版项目常见命令（示意，需在你的具体仓库核对脚本与任务名）：
+当前旧版项目常见命令（示意，需在具体仓库核对脚本与任务名）：
 
 ```bash
 # 旧版 Isaac Lab 常见入口
 ./isaaclab.sh -p scripts/reinforcement_learning/rsl_rl/train.py \
   --task <已注册任务名> --num_envs 256 --headless
 
-# 你的 Go2 定制仓库此前使用的训练入口
+# Go2 定制仓库此前使用的训练入口
 python scripts/rsl_rl/train_sim51.py \
   --task go2-mixed-moe-cts \
   --headless --num_envs 256 --max_iterations 100
@@ -259,4 +259,4 @@ uv run isaaclab --editor                    # 编辑器配置
 > 1. `uv run`：管理环境并运行命令。
 > 2. `isaaclab train/play`：训练与回放。
 > 3. `--extra` 安装集成；`physics=` 选择物理后端；`--viz` 选择可视化。
-> 4. 新版 CLI 与你的 Isaac Lab 2.3.2 **不是直接兼容的命令替换关系**。
+> 4. 新版 CLI 与 Isaac Lab 2.3.2 **不是直接兼容的命令替换关系**。

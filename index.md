@@ -9,7 +9,7 @@ home: true
   <div class="hero-copy" data-reveal>
     <p class="eyebrow">Robotics · Reinforcement Learning · Sim-to-Real</p>
     <h1>从仿真开始，<span>让机器学会行动。</span></h1>
-    <p class="hero-lede">Isaac Lab × Go2 学习记录。</p>
+    <p class="hero-lede">Isaac Lab × Go2 · 仿真与强化学习记录</p>
     <div class="hero-actions">
       <a class="button button-primary" href="#films">观看实验 <span>↘</span></a>
       <a class="button" href="笔记库/">浏览笔记</a>
@@ -18,6 +18,8 @@ home: true
   </div>
 
   <div class="hero-media-wrap" data-reveal>
+    <span class="hero-float-card hero-float-card-one" aria-hidden="true">SIM / 01 <b>构建世界</b></span>
+    <span class="hero-float-card hero-float-card-two" aria-hidden="true">RL / 02 <b>训练策略</b></span>
     <div class="hero-orbit hero-orbit-one" aria-hidden="true"></div>
     <div class="hero-orbit hero-orbit-two" aria-hidden="true"></div>
     <div class="film-frame hero-film">
@@ -41,7 +43,7 @@ home: true
     <span>06 SEC · LOOP</span>
   </div>
   <div class="film-frame scene-film" data-reveal>
-    <video data-ambient-video muted autoplay loop playsinline preload="metadata" poster="{{ '/assets/images/simulation-field.webp' | relative_url }}" aria-label="Isaac 仿真场景中机器人运动的六秒录屏">
+    <video data-ambient-video muted autoplay loop playsinline preload="metadata" poster="{{ '/assets/images/simulation-field-20-26.jpg' | relative_url }}" aria-label="Isaac 仿真录屏中第 20 至 26 秒的机器人运动片段">
       <source src="{{ '/assets/media/simulation-field.webm' | relative_url }}" type="video/webm">
     </video>
     <div class="film-shade" aria-hidden="true"></div>
@@ -54,7 +56,7 @@ home: true
 <section class="chapter-section" id="path" aria-labelledby="path-title">
   <div class="chapter-head" data-reveal>
     <p class="eyebrow">The learning path</p>
-    <h2 id="path-title">四个阶段，<br><span>持续向前。</span></h2>
+    <h2 id="path-title"><a href="{{ '/Isaac学习内容/00_阅读索引/' | relative_url }}">四个阶段，<br><span>持续向前。</span></a></h2>
     <a class="text-link" href="Isaac学习内容/00_阅读索引/">进入学习路线 <span aria-hidden="true">↗</span></a>
   </div>
   <div class="chapter-list" data-reveal>
@@ -71,6 +73,26 @@ home: true
     <p>按主题阅读学习笔记。</p>
   </div>
   {% include note-browser.html %}
+</section>
+
+<section class="guestbook-section" id="guestbook" aria-labelledby="guestbook-title">
+  <div class="guestbook-intro" data-reveal>
+    <p class="eyebrow">Learning signals</p>
+    <h2 id="guestbook-title">留下一个<span>想法。</span></h2>
+    <p>50 字以内 · 留言仅保存在当前浏览器</p>
+  </div>
+  <form class="guestbook-form" data-guestbook-form>
+    <label for="guestbook-message">学习片段或想法</label>
+    <div class="guestbook-input-row">
+      <textarea id="guestbook-message" data-guestbook-input rows="2" maxlength="50" placeholder="记录一个关于仿真或训练的想法…" required></textarea>
+      <button class="button button-primary" type="submit">留下想法 ↗</button>
+    </div>
+    <div class="guestbook-meta"><span data-guestbook-count>0 / 50</span><span data-guestbook-status role="status" aria-live="polite"></span></div>
+  </form>
+  <div class="guestbook-window" data-guestbook-window aria-label="本机留言轮播">
+    <div class="guestbook-track" data-guestbook-track></div>
+    <p class="guestbook-empty" data-guestbook-empty>还没有留言，第一条从这里开始。</p>
+  </div>
 </section>
 
 <section class="section closing" data-reveal>

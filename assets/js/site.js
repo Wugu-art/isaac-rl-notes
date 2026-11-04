@@ -5,6 +5,21 @@
   const progress = document.querySelector('[data-progress]');
   const navToggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.site-nav');
+  const themeToggle = document.querySelector('[data-theme-toggle]');
+  const updateThemeToggle = () => {
+    if (!themeToggle) return;
+    const light = root.dataset.theme === 'light';
+    themeToggle.setAttribute('aria-label', `切换到${light ? '黑夜' : '白天'}主题`);
+    themeToggle.querySelector('[data-theme-label]').textContent = light ? '黑夜' : '白天';
+    themeToggle.querySelector('span[aria-hidden]').textContent = light ? '☾' : '☼';
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', light ? '#f5f7f8' : '#080b12');
+  };
+  updateThemeToggle();
+  themeToggle?.addEventListener('click', () => {
+    root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
+    try { localStorage.setItem('isaac-theme', root.dataset.theme); } catch (_) { /* Theme still works for this visit. */ }
+    updateThemeToggle();
+  });
 
   const updateScrollState = () => {
     const top = window.scrollY || root.scrollTop;
@@ -82,14 +97,67 @@
     }
   });
 
-  const currentPath = decodeURI(window.location.pathname).replace(/index\.html$/, '');
+  const currentPath = decodeURI(window.location.pathname).replace(/index\.html$/, '').replace(/\/$/, '') + '/';
   document.querySelectorAll('.site-nav a').forEach((link) => {
-    const path = decodeURI(new URL(link.href, window.location.href).pathname).replace(/index\.html$/, '');
+    const path = decodeURI(new URL(link.href, window.location.href).pathname).replace(/index\.html$/, '').replace(/\/$/, '') + '/';
     const learningSection = currentPath.includes('/Isaac学习内容/') && path.endsWith('/Isaac学习内容/00_阅读索引/');
-    if (path === currentPath || learningSection || (path !== '/' && currentPath.startsWith(path.replace(/\.html$/, '')))) {
+    const sectionMatch = path !== '/' && path !== decodeURI(new URL(document.querySelector('.brand').href).pathname) && currentPath.startsWith(path);
+    if (path === currentPath || learningSection || sectionMatch) {
       link.setAttribute('aria-current', 'page');
     }
   });
+
+  const guestbookForm = document.querySelector('[data-guestbook-form]');
+  if (guestbookForm) {
+    const input = guestbookForm.querySelector('[data-guestbook-input]');
+    const counter = guestbookForm.querySelector('[data-guestbook-count]');
+    const status = guestbookForm.querySelector('[data-guestbook-status]');
+    const track = document.querySelector('[data-guestbook-track]');
+    const storageKey = 'isaac-learning-signals-v1';
+    let messages = [];
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      if (Array.isArray(saved)) messages = saved.filter((entry) => typeof entry === 'string' && entry.length <= 100).slice(0, 30);
+    } catch (_) { /* Keep the local board usable when storage is unavailable. */ }
+    const renderMessages = () => {
+      track.replaceChildren();
+      if (!messages.length) return;
+      const addCards = (duplicate) => messages.forEach((message, index) => {
+        const card = document.createElement('article');
+        card.className = 'guestbook-card';
+        card.style.setProperty('--tilt', `${[-2, 1.5, -1, 2][index % 4]}deg`);
+        if (duplicate) card.setAttribute('aria-hidden', 'true');
+        const body = document.createElement('p');
+        body.textContent = message;
+        const label = document.createElement('small');
+        label.textContent = `LEARNING SIGNAL / ${String(index + 1).padStart(2, '0')}`;
+        card.append(body, label);
+        track.append(card);
+      });
+      addCards(false);
+      addCards(true);
+    };
+    const updateCount = () => {
+      const characters = Array.from(input.value);
+      if (characters.length > 50) input.value = characters.slice(0, 50).join('');
+      counter.textContent = `${Array.from(input.value).length} / 50`;
+    };
+    input.addEventListener('input', updateCount);
+    guestbookForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const message = input.value.trim();
+      if (!message || Array.from(message).length > 50) return;
+      messages.unshift(message);
+      messages = messages.slice(0, 30);
+      try { localStorage.setItem(storageKey, JSON.stringify(messages)); status.textContent = '已保存到此浏览器'; }
+      catch (_) { status.textContent = '已显示；当前浏览器无法持久保存'; }
+      input.value = '';
+      updateCount();
+      renderMessages();
+    });
+    updateCount();
+    renderMessages();
+  }
 
   document.querySelectorAll('[data-note-browser]').forEach((browser) => {
     const buttons = [...browser.querySelectorAll('[data-note-category]')];

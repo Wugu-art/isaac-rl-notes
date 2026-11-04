@@ -15,11 +15,11 @@ next_label: 创建空场景
 # Isaac Lab 操作指南：通俗学习笔记
 
 > [!info] 阅读说明
-> 原始文档是 **How-to 指南目录**，不是一篇连续教程。本笔记按目录归纳各指南的用途、学习优先级和学习路线；**不是每篇子指南的逐篇全文总结**。文档涉及新版 Isaac Lab，与你使用的 Isaac Lab 2.3.2 可能存在 API 差异，运行前要核对版本。
+> 原始文档是 **How-to 指南目录**，不是一篇连续教程。本笔记按目录归纳各指南的用途、学习优先级和学习路线；**不是每篇子指南的逐篇全文总结**。文档涉及新版 Isaac Lab，与 Isaac Lab 2.3.2 可能存在 API 差异，运行前要核对版本。
 
 ## 一、先记住整体框架
 
-**Isaac Sim** 提供仿真运行环境；**Isaac Lab** 帮你组织机器人、场景、传感器和强化学习任务；**PhysX / Newton** 等负责物理求解；**PPO** 等算法负责训练策略。
+**Isaac Sim** 提供仿真运行环境；**Isaac Lab** 组织机器人、场景、传感器和强化学习任务；**PhysX / Newton** 等负责物理求解；**PPO** 等算法负责训练策略。
 
 训练任务的典型流程：
 
@@ -84,7 +84,7 @@ Manager-based 里最重要的几项：
 
 ### 6. PhysX 与 Newton / MJWarp
 
-- **PhysX**：你现有 Isaac Lab 项目的主要物理后端。
+- **PhysX**：当前 Isaac Lab 项目的主要物理后端。
 - **Newton**：面向机器人仿真的框架，可使用 MJWarp 等求解器。
 - **MJWarp**：基于 GPU 的 MuJoCo 风格物理求解器。
 - 切换后端前，先确认模型兼容性，再比较接触稳定性、步态效果和吞吐量。
@@ -133,7 +133,7 @@ Manager-based 里最重要的几项：
 
 ## 七、动手检查题
 
-打开你现有 Go2 项目的 `env_cfg.py`，找到：`scene`、`observations`、`actions`、`rewards`、`terminations`、`events`、`sim.dt`、`decimation`。能说清每项用途，就可以进入奖励函数修改实践。
+检查 Go2 项目的 `env_cfg.py`，定位：`scene`、`observations`、`actions`、`rewards`、`terminations`、`events`、`sim.dt`、`decimation`。厘清每项用途后，再进入奖励函数修改实践。
 
 ---
 
