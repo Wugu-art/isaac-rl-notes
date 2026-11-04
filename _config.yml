@@ -5,6 +5,14 @@ url: "https://wugu-art.github.io"
 baseurl: "/isaac-rl-notes"
 markdown: kramdown
 permalink: pretty
+plugins:
+  - jekyll-optional-front-matter
+  - jekyll-titles-from-headings
+optional_front_matter:
+  remove_originals: true
+titles_from_headings:
+  enabled: true
+  strip_title: false
 kramdown:
   input: GFM
   syntax_highlighter: rouge
@@ -13,8 +21,31 @@ defaults:
       path: ""
     values:
       layout: default
+  - scope:
+      path: "笔记/环境与资产"
+    values:
+      category: 环境与资产
+      section: 学习路线
+  - scope:
+      path: "笔记/仿真基础"
+    values:
+      category: 仿真基础
+      section: 学习路线
+  - scope:
+      path: "笔记/强化学习"
+    values:
+      category: 强化学习
+      section: 学习路线
+  - scope:
+      path: "笔记/Sim-to-Real"
+    values:
+      category: Sim-to-Real
+      section: 学习路线
 exclude:
   - 原始资料
   - .obsidian
+  - .agents
+  - AGENTS.md
+  - 如何添加笔记.md
   - Gemfile
   - Gemfile.lock

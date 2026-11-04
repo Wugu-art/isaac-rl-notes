@@ -4,6 +4,7 @@ description: Isaac Lab How-to 指南概念地图、Go2 相关重点与推荐阅�
 tags: [IsaacLab, IsaacSim, 强化学习, Go2, 学习笔记]
 source: https://docs.robotsfan.com/isaaclab/source/how-to/index.html
 section: 学习路线
+category: 环境与资产
 updated: 2026-11-04
 prev_url: /Isaac学习内容/IsaacLab_uv_常用命令笔记/
 prev_label: uv 与常用命令

@@ -1,0 +1,29 @@
+{% assign note_categories = "环境与资产|仿真基础|强化学习|Sim-to-Real" | split: "|" %}
+<div class="note-browser" data-note-browser>
+  <nav class="note-browser-nav" aria-label="笔记分类">
+    <p class="note-browser-label">笔记目录</p>
+    {% for category in note_categories %}
+      {% assign category_notes = site.pages | where: "category", category %}
+      <button type="button" data-note-category="{{ category }}"{% if forloop.first %} aria-current="true"{% endif %}>
+        <span>{{ category }}</span><small>{{ category_notes.size }}</small>
+      </button>
+    {% endfor %}
+  </nav>
+  <div class="note-browser-content">
+    {% for category in note_categories %}
+      {% assign category_notes = site.pages | where: "category", category | sort: "title" %}
+      <section class="note-browser-panel" data-note-panel="{{ category }}" aria-label="{{ category }}">
+        <div class="note-browser-panel-head"><h3>{{ category }}</h3><span>{{ category_notes.size }} 篇</span></div>
+        {% if category_notes.size > 0 %}
+          <ul class="note-browser-list">
+            {% for note in category_notes %}
+              <li><a href="{{ note.url | relative_url }}"><strong>{{ note.title | default: note.basename }}</strong><span>{{ note.description | default: "阅读笔记" }}</span><span aria-hidden="true">↗</span></a></li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="note-browser-empty">这一类的笔记正在整理。</p>
+        {% endif %}
+      </section>
+    {% endfor %}
+  </div>
+</div>

@@ -90,6 +90,17 @@
     }
   });
 
+  document.querySelectorAll('[data-note-browser]').forEach((browser) => {
+    const buttons = [...browser.querySelectorAll('[data-note-category]')];
+    const panels = [...browser.querySelectorAll('[data-note-panel]')];
+    const selectCategory = (category) => {
+      buttons.forEach((button) => button.setAttribute('aria-current', String(button.dataset.noteCategory === category)));
+      panels.forEach((panel) => { panel.hidden = panel.dataset.notePanel !== category; });
+    };
+    buttons.forEach((button) => button.addEventListener('click', () => selectCategory(button.dataset.noteCategory)));
+    if (buttons.length) selectCategory(buttons[0].dataset.noteCategory);
+  });
+
   const article = document.querySelector('.prose');
   const timeTarget = document.querySelector('[data-reading-time]');
   if (article && timeTarget) {

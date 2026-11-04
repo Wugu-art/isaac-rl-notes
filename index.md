@@ -62,30 +62,9 @@ home: true
 
 <section class="section">
   <div class="section-heading" data-reveal>
-    <h2>重点笔记</h2>
+    <h2>笔记目录</h2>
   </div>
-  <div class="knowledge-grid">
-    <a class="knowledge-card" href="Isaac学习内容/00_部署与Go2项目流程/" data-reveal>
-      <span class="knowledge-index">01 / DEPLOYMENT</span>
-      <h3>部署与 Go2 项目流程</h3>
-      <p>从 Isaac Lab 安装到 Gym 注册、训练、回放与策略导出。</p>
-    </a>
-    <a class="knowledge-card" href="Isaac学习内容/01_创建空场景/" data-reveal>
-      <span class="knowledge-index">02 / SIMULATION</span>
-      <h3>创建空场景</h3>
-      <p>理解启动、初始化和物理步进的最小闭环。</p>
-    </a>
-    <a class="knowledge-card" href="Isaac学习内容/IsaacLab_uv_常用命令笔记/" data-reveal>
-      <span class="knowledge-index">03 / TOOLCHAIN</span>
-      <h3>uv 与常用命令</h3>
-      <p>训练、回放、日志、检查点和新旧版本 CLI 的边界。</p>
-    </a>
-    <a class="knowledge-card" href="笔记库/" data-reveal>
-      <span class="knowledge-index">ALL / LIBRARY</span>
-      <h3>浏览完整笔记库</h3>
-      <p>按环境、工具链与仿真主题浏览全部已整理内容。</p>
-    </a>
-  </div>
+  {% include note-browser.html %}
 </section>
 
 <section class="section">

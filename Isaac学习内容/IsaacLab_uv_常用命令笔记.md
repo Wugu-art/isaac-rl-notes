@@ -10,6 +10,7 @@ source: https://docs.robotsfan.com/isaaclab/source/isaaclab/quickstart.html
 source_updated: 2026-10-20
 description: Isaac Lab 新版 uv 工作流、训练回放、物理后端、日志与检查点命令速查
 section: 学习路线
+category: 环境与资产
 updated: 2026-11-04
 prev_url: /Isaac学习内容/00_部署与Go2项目流程/
 prev_label: 部署与 Go2 项目流程

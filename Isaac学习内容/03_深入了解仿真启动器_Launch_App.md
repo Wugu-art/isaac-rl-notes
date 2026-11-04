@@ -4,6 +4,7 @@ description: 理解 AppLauncher 启动参数、物理后端、运行时与版本
 tags: [IsaacLab, IsaacSim, Python, 启动器, Obsidian]
 source: https://docs.robotsfan.com/isaaclab/source/how-to/launch_app.html
 section: 学习路线
+category: 仿真基础
 updated: 2026-11-04
 prev_url: /Isaac学习内容/02_生成基本物体到场景/
 prev_label: 生成基本物体到场景
