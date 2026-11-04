@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Isaac RL learning mark</title>
+  <defs>
+    <linearGradient id="g" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#62f4d5"/>
+      <stop offset="1" stop-color="#8178ff"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 4 54.5 17v30L32 60 9.5 47V17L32 4Z" fill="#0d121d" stroke="url(#g)" stroke-width="2"/>
+  <path d="M22 20v24m20-24v14c0 6.6-4.4 10-10 10s-10-3.4-10-10" fill="none" stroke="url(#g)" stroke-linecap="round" stroke-width="4"/>
+  <circle cx="42" cy="20" r="2.5" fill="#62f4d5"/>
+</svg>
+

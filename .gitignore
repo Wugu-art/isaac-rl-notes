@@ -1,0 +1,16 @@
+.DS_Store
+Thumbs.db
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.jekyll-cache/
+_site/
+
+# 原始编辑文档只在本机归档，不放入公开仓库
+原始资料/
+
+# 本地训练产物通常体积很大，不提交到学习网站仓库
+logs/
+checkpoints/
+*.pt
+*.pth
+*.onnx

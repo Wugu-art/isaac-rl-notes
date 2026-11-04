@@ -1,0 +1,21 @@
+title: Isaac Lab × Go2 学习笔记
+description: Isaac Lab、Isaac Sim、Go2 强化学习与 Sim-to-Real 学习总结
+lang: zh-CN
+url: "https://wugu-art.github.io"
+baseurl: "/isaac-rl-notes"
+markdown: kramdown
+permalink: pretty
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+exclude:
+  - 原始资料
+  - 学习模板
+  - .obsidian
+  - Gemfile
+  - Gemfile.lock
