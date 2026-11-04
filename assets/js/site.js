@@ -26,10 +26,66 @@
     });
   }
 
+  const searchDialog = document.querySelector('[data-search-dialog]');
+  const searchInput = document.querySelector('[data-search-input]');
+  const searchItems = [...document.querySelectorAll('[data-search-item]')];
+  const searchEmpty = document.querySelector('[data-search-empty]');
+  let searchReturnFocus = null;
+
+  const filterSearch = () => {
+    const query = (searchInput?.value || '').trim().toLocaleLowerCase('zh-CN');
+    let visible = 0;
+    searchItems.forEach((item) => {
+      const match = !query || (item.dataset.searchText || '').includes(query);
+      item.hidden = !match;
+      if (match) visible += 1;
+    });
+    if (searchEmpty) searchEmpty.hidden = visible > 0;
+  };
+
+  const openSearch = (trigger) => {
+    if (!searchDialog) return;
+    searchReturnFocus = trigger || document.activeElement;
+    searchDialog.hidden = false;
+    document.body.classList.add('search-open');
+    filterSearch();
+    requestAnimationFrame(() => searchInput?.focus());
+  };
+
+  const closeSearch = () => {
+    if (!searchDialog || searchDialog.hidden) return;
+    searchDialog.hidden = true;
+    document.body.classList.remove('search-open');
+    if (searchInput) searchInput.value = '';
+    filterSearch();
+    searchReturnFocus?.focus?.();
+  };
+
+  document.querySelectorAll('[data-search-open]').forEach((button) => {
+    button.addEventListener('click', () => openSearch(button));
+  });
+  document.querySelectorAll('[data-search-close]').forEach((button) => {
+    button.addEventListener('click', closeSearch);
+  });
+  searchInput?.addEventListener('input', filterSearch);
+  document.addEventListener('keydown', (event) => {
+    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || '');
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      openSearch(document.activeElement);
+    } else if (event.key === '/' && !typing && searchDialog?.hidden) {
+      event.preventDefault();
+      openSearch(document.activeElement);
+    } else if (event.key === 'Escape') {
+      closeSearch();
+    }
+  });
+
   const currentPath = decodeURI(window.location.pathname).replace(/index\.html$/, '');
   document.querySelectorAll('.site-nav a').forEach((link) => {
     const path = decodeURI(new URL(link.href, window.location.href).pathname).replace(/index\.html$/, '');
-    if (path === currentPath || (path !== '/' && currentPath.startsWith(path.replace(/\.html$/, '')))) {
+    const learningSection = currentPath.includes('/Isaac学习内容/') && path.endsWith('/Isaac学习内容/00_阅读索引.html');
+    if (path === currentPath || learningSection || (path !== '/' && currentPath.startsWith(path.replace(/\.html$/, '')))) {
       link.setAttribute('aria-current', 'page');
     }
   });
@@ -57,6 +113,26 @@
     });
     if (!headings.length) toc.closest('.page-toc')?.classList.add('is-empty');
   }
+
+  const calloutNames = {
+    note: '说明',
+    info: '信息',
+    summary: '本页目标',
+    abstract: '摘要',
+    tip: '提示',
+    warning: '注意',
+    important: '重点'
+  };
+  document.querySelectorAll('.prose blockquote').forEach((quote) => {
+    const first = quote.querySelector('p:first-child');
+    if (!first) return;
+    const marker = first.textContent.match(/^\[!(note|info|summary|abstract|tip|warning|important)\]\s*/i);
+    if (!marker) return;
+    quote.classList.add('callout');
+    quote.dataset.callout = calloutNames[marker[1].toLowerCase()] || marker[1];
+    first.innerHTML = first.innerHTML.replace(/^\[!(note|info|summary|abstract|tip|warning|important)\]\s*/i, '');
+    if (!first.textContent.trim()) first.remove();
+  });
 
   document.querySelectorAll('.prose pre').forEach((pre) => {
     const code = pre.querySelector('code');
@@ -96,4 +172,3 @@
     document.querySelectorAll('[data-reveal]').forEach((element) => element.classList.add('is-visible'));
   }
 })();
-

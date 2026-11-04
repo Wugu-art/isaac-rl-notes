@@ -91,6 +91,35 @@ home: true
       <h3>uv 与常用命令</h3>
       <p>训练、回放、日志、检查点和新旧版本 CLI 的边界。</p>
     </a>
+    <a class="knowledge-card" href="Isaac学习内容/03_深入了解仿真启动器_Launch_App.html" data-reveal>
+      <span class="knowledge-index">05 / RUNTIME</span>
+      <h3>仿真启动器</h3>
+      <p>启动参数、运行时、物理后端与版本兼容性。</p>
+    </a>
+    <a class="knowledge-card" href="笔记库.html" data-reveal>
+      <span class="knowledge-index">ALL / LIBRARY</span>
+      <h3>浏览完整笔记库</h3>
+      <p>按环境、工具链与仿真主题浏览全部已整理内容。</p>
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading" data-reveal>
+    <h2>最近更新</h2>
+    <p>学习档案不仅展示“已经会了什么”，也保留每次整理、修复和下一步。所有变化都能从日志与 Git 历史追溯。</p>
+  </div>
+  <div class="note-grid">
+    <a class="note-tile" href="学习日志/2026-11-04_站点上线与资料整理.html" data-reveal>
+      <small>2026-11-04 · LEARNING LOG</small>
+      <strong>站点上线与资料整理</strong>
+      <span>完成知识库结构、暗色主题、GitHub Pages 发布和首轮链接修复。</span>
+    </a>
+    <a class="note-tile" href="关于.html" data-reveal>
+      <small>METHOD · VERSION POLICY</small>
+      <strong>这个学习库如何维护</strong>
+      <span>了解记录原则、版本边界、内容结构和持续更新方式。</span>
+    </a>
   </div>
 </section>
 
@@ -112,6 +141,8 @@ home: true
 
 <section class="section closing" data-reveal>
   <h2>把每一次实验，变成下一次前进的<span>坐标。</span></h2>
-  <a class="button button-primary" href="学习日志/">查看学习日志 →</a>
+  <div class="hero-actions">
+    <a class="button button-primary" href="学习日志/">查看学习日志 →</a>
+    <a class="button" href="学习模板/">使用学习模板</a>
+  </div>
 </section>
-

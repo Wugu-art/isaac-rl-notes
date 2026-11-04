@@ -2,6 +2,8 @@
 
 这是一个持续更新的个人学习库，主要记录 Isaac Lab、Isaac Sim、Go2 强化学习和仿真训练相关内容。
 
+公开网站：<https://wugu-art.github.io/isaac-rl-notes/>
+
 ## 从这里开始
 
 - [学习导航](Isaac学习内容/00_阅读索引.md)

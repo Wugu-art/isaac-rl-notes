@@ -1,7 +1,14 @@
 ---
 title: Isaac Lab How-to 操作指南学习笔记
+description: Isaac Lab How-to 指南概念地图、Go2 相关重点与推荐阅读顺序
 tags: [IsaacLab, IsaacSim, 强化学习, Go2, 学习笔记]
 source: https://docs.robotsfan.com/isaaclab/source/how-to/index.html
+section: 学习路线
+updated: 2026-11-04
+prev_url: /Isaac学习内容/IsaacLab_uv_常用命令笔记.html
+prev_label: uv 与常用命令
+next_url: /Isaac学习内容/01_创建空场景.html
+next_label: 创建空场景
 ---
 
 # Isaac Lab 操作指南：通俗学习笔记

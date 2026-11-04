@@ -6,6 +6,11 @@
     <meta name="theme-color" content="#080b12">
     <meta name="color-scheme" content="dark">
     <meta name="description" content="{{ page.description | default: site.description | escape }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% if page.title and page.title != site.title %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}">
+    <meta property="og:description" content="{{ page.description | default: site.description | escape }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
     <title>{% if page.title and page.title != site.title %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}</title>
     <link rel="icon" href="{{ '/assets/images/site-mark.svg' | relative_url }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ '/assets/css/theme.css' | relative_url }}">
@@ -32,8 +37,12 @@
       <nav class="site-nav" id="site-nav" aria-label="主导航">
         <a href="{{ '/' | relative_url }}">首页</a>
         <a href="{{ '/Isaac学习内容/00_阅读索引.html' | relative_url }}">学习路线</a>
-        <a href="{{ '/Isaac学习内容/00_部署与Go2项目流程.html' | relative_url }}">部署记录</a>
-        <a href="{{ '/发布指南.html' | relative_url }}">发布指南</a>
+        <a href="{{ '/笔记库.html' | relative_url }}">笔记库</a>
+        <a href="{{ '/学习日志/' | relative_url }}">学习日志</a>
+        <a href="{{ '/关于.html' | relative_url }}">关于</a>
+        <button class="search-toggle" type="button" data-search-open aria-label="搜索全站" title="搜索（Ctrl/⌘ + K）">
+          <span aria-hidden="true">⌕</span><span class="search-label">搜索</span>
+        </button>
       </nav>
     </header>
 
@@ -46,11 +55,36 @@
     {% else %}
       <main id="main-content" class="article-shell">
         <article class="article-card prose">
+          <nav class="breadcrumbs" aria-label="面包屑导航">
+            <a href="{{ '/' | relative_url }}">首页</a>
+            <span aria-hidden="true">/</span>
+            {% if page.section == '学习路线' %}
+              <a href="{{ '/Isaac学习内容/00_阅读索引.html' | relative_url }}">学习路线</a>
+              <span aria-hidden="true">/</span>
+            {% elsif page.section == '学习日志' %}
+              <a href="{{ '/学习日志/' | relative_url }}">学习日志</a>
+              <span aria-hidden="true">/</span>
+            {% elsif page.section %}
+              <span>{{ page.section }}</span>
+              <span aria-hidden="true">/</span>
+            {% endif %}
+            <span aria-current="page">{{ page.title }}</span>
+          </nav>
           <div class="article-kicker">
             <span>ISAAC LEARNING ARCHIVE</span>
-            <span data-reading-time></span>
+            <span>{% if page.updated %}更新 {{ page.updated }} · {% endif %}<span data-reading-time></span></span>
           </div>
           {{ content }}
+          {% if page.prev_url or page.next_url %}
+            <nav class="article-pagination" aria-label="文章翻页">
+              {% if page.prev_url %}
+                <a class="article-prev" href="{{ page.prev_url | relative_url }}"><small>上一篇</small><strong>← {{ page.prev_label }}</strong></a>
+              {% else %}<span></span>{% endif %}
+              {% if page.next_url %}
+                <a class="article-next" href="{{ page.next_url | relative_url }}"><small>下一篇</small><strong>{{ page.next_label }} →</strong></a>
+              {% endif %}
+            </nav>
+          {% endif %}
         </article>
         <aside class="page-toc" aria-label="本页目录">
           <p>本页目录</p>
@@ -65,10 +99,45 @@
         <img src="{{ '/assets/images/site-mark.svg' | relative_url }}" alt="" width="28" height="28">
         <p><strong>Isaac Lab × Go2</strong><br><span>持续学习，持续验证。</span></p>
       </div>
-      <p>Built as a public learning archive · {{ site.time | date: '%Y' }}</p>
+      <nav aria-label="页脚导航">
+        <a href="{{ '/笔记库.html' | relative_url }}">全部笔记</a>
+        <a href="{{ '/发布指南.html' | relative_url }}">发布指南</a>
+        <a href="{{ site.repository_url }}" rel="external">GitHub</a>
+      </nav>
+      <p>Public learning archive · {{ site.time | date: '%Y' }}</p>
     </footer>
+
+    <div class="search-dialog" data-search-dialog hidden>
+      <button class="search-backdrop" type="button" data-search-close aria-label="关闭搜索"></button>
+      <section class="search-panel" role="dialog" aria-modal="true" aria-labelledby="search-title">
+        <div class="search-head">
+          <div>
+            <p class="eyebrow">Knowledge finder</p>
+            <h2 id="search-title">搜索学习档案</h2>
+          </div>
+          <button class="search-close" type="button" data-search-close aria-label="关闭搜索">Esc</button>
+        </div>
+        <label class="search-field">
+          <span class="sr-only">输入关键词</span>
+          <input type="search" data-search-input placeholder="搜索标题、主题或路径…" autocomplete="off">
+        </label>
+        <div class="search-results" data-search-results>
+          {% assign searchable_pages = site.pages | sort: 'title' %}
+          {% for item in searchable_pages %}
+            {% if item.title and item.url and item.title != '页面未找到' %}
+              {% unless item.path contains 'README.md' %}
+                <a href="{{ item.url | relative_url }}" data-search-item data-search-text="{{ item.title | append: ' ' | append: item.description | append: ' ' | append: item.path | downcase | escape }}">
+                  <strong>{{ item.title }}</strong>
+                  <span>{{ item.description | default: item.path }}</span>
+                </a>
+              {% endunless %}
+            {% endif %}
+          {% endfor %}
+          <p class="search-empty" data-search-empty hidden>没有找到匹配内容，试试“Go2”“训练”或“仿真”。</p>
+        </div>
+      </section>
+    </div>
 
     <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
   </body>
 </html>
-
