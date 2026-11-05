@@ -1,6 +1,6 @@
 # Isaac Lab × Go2 学习网站
 
-Isaac Lab、Isaac Sim、Go2 强化学习和仿真训练学习网站。网页源码和 GitHub Pages 部署配置在此目录；本地笔记源位于旁边的 `../isaac_RL`。
+Isaac Lab、Isaac Sim、Go2 强化学习和仿真训练学习网站。网页源码和 GitHub Pages 部署配置在此目录；本地笔记源位于 `../../isaac_RL`。
 
 ## 从这里开始
 
@@ -11,7 +11,7 @@ Isaac Lab、Isaac Sim、Go2 强化学习和仿真训练学习网站。网页源�
 
 ## 阅读方式
 
-- 本地阅读：用 Obsidian 打开 `../isaac_RL`。
+- 本地阅读：用 Obsidian 打开 `../../isaac_RL`。
 - 从[学习路线](Isaac学习内容/00_阅读索引.md)开始，按环境、仿真、训练和迁移顺序阅读。
 - 使用[学习模板](学习模板/学习笔记模板.md)记录新实验。
 
