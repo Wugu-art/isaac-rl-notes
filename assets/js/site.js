@@ -7,10 +7,30 @@
   const nav = document.querySelector('.site-nav');
   const learningOutline = document.querySelector('[data-learning-outline]');
   if (learningOutline) {
+    const shell = learningOutline.closest('.article-shell');
+    const outlineButton = learningOutline.querySelector('[data-outline-toggle]');
+    const outlineNav = learningOutline.querySelector('#learning-outline-nav');
     const narrowOutline = window.matchMedia('(max-width: 960px)');
-    const syncOutline = () => { learningOutline.open = !narrowOutline.matches; };
+    const setOutline = (open, persist = false) => {
+      shell.classList.toggle('is-outline-collapsed', !open);
+      outlineButton.setAttribute('aria-expanded', String(open));
+      outlineButton.setAttribute('aria-label', open ? '收起学习大纲' : '展开学习大纲');
+      outlineNav.inert = !open;
+      outlineNav.setAttribute('aria-hidden', String(!open));
+      if (persist && !narrowOutline.matches) {
+        try { localStorage.setItem('isaac-outline-collapsed', String(!open)); } catch (_) { /* Keep the current state. */ }
+      }
+    };
+    const syncOutline = () => {
+      let collapsed = narrowOutline.matches;
+      if (!collapsed) {
+        try { collapsed = localStorage.getItem('isaac-outline-collapsed') === 'true'; } catch (_) { /* Default to open. */ }
+      }
+      setOutline(!collapsed);
+    };
     syncOutline();
     narrowOutline.addEventListener('change', syncOutline);
+    outlineButton.addEventListener('click', () => setOutline(shell.classList.contains('is-outline-collapsed'), true));
   }
   const themeToggle = document.querySelector('[data-theme-toggle]');
   const updateThemeToggle = () => {

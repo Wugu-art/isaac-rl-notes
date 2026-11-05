@@ -55,8 +55,8 @@
         {{ content }}
       </main>
     {% else %}
-      <main id="main-content" class="article-shell{% if page.section == '学习路线' %} article-shell--learning{% endif %}">
-        {% if page.section == '学习路线' %}{% include learning-outline.html %}{% endif %}
+      <main id="main-content" class="article-shell article-shell--learning">
+        {% include learning-outline.html %}
         <article class="article-card prose">
           <nav class="breadcrumbs" aria-label="面包屑导航">
             <a href="{{ '/' | relative_url }}">首页</a>

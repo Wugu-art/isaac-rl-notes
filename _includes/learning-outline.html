@@ -1,9 +1,14 @@
 {% assign outline_categories = "环境与资产|仿真基础|强化学习|Sim-to-Real" | split: "|" %}
 <aside class="learning-outline" aria-label="学习路线大纲">
-  <details class="learning-outline-disclosure" data-learning-outline open>
-    <summary>学习大纲 <span class="outline-chevron" aria-hidden="true"></span></summary>
-    <nav aria-label="学习路线章节">
+  <div class="learning-outline-disclosure" data-learning-outline>
+    <button class="learning-outline-toggle" type="button" data-outline-toggle aria-expanded="true" aria-controls="learning-outline-nav" aria-label="收起学习大纲">
+      <span class="learning-outline-title">学习大纲 <span class="outline-chevron" aria-hidden="true"></span></span>
+      <span class="outline-cube" aria-hidden="true"><span class="cube-core"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+    </button>
+    <nav id="learning-outline-nav" aria-label="学习路线章节">
       <a class="learning-outline-home{% if page.url == '/Isaac学习内容/00_阅读索引/' %} is-current{% endif %}" href="{{ '/Isaac学习内容/00_阅读索引/' | relative_url }}"{% if page.url == '/Isaac学习内容/00_阅读索引/' %} aria-current="page"{% endif %}>学习导航</a>
+      <a class="learning-outline-home{% if page.section == '知识库' %} is-current{% endif %}" href="{{ '/笔记库/' | relative_url }}"{% if page.section == '知识库' %} aria-current="page"{% endif %}>笔记库</a>
+      <a class="learning-outline-home{% if page.section == '学习日志' %} is-current{% endif %}" href="{{ '/学习日志/' | relative_url }}"{% if page.section == '学习日志' %} aria-current="page"{% endif %}>学习日志</a>
       {% for category in outline_categories %}
         {% assign outline_notes = site.pages | where: "category", category | sort: "title" %}
         <details class="learning-outline-group"{% if page.category == category or page.category == nil and forloop.first %} open{% endif %}>
@@ -20,5 +25,5 @@
         </details>
       {% endfor %}
     </nav>
-  </details>
+  </div>
 </aside>

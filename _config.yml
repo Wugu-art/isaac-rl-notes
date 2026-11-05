@@ -42,6 +42,8 @@ defaults:
       category: Sim-to-Real
       section: 学习路线
 exclude:
+  - README.md
+  - scripts
   - 原始资料
   - .obsidian
   - .agents
