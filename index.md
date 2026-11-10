@@ -38,7 +38,7 @@ home: true
 
 <section class="film-section" id="films" aria-labelledby="films-title">
   <div class="film-section-heading" data-reveal>
-    <p class="eyebrow">Field notes / 001</p>
+    <p class="eyebrow">Simulation / Go2</p>
     <h2 id="films-title">看见仿真<span>发生。</span></h2>
     <span>06 SEC · LOOP</span>
   </div>
@@ -129,12 +129,5 @@ home: true
   <div class="guestbook-window" data-guestbook-window aria-label="本机留言轮播">
     <div class="guestbook-track" data-guestbook-track></div>
     <p class="guestbook-empty" data-guestbook-empty>还没有留言，第一条从这里开始。</p>
-  </div>
-</section>
-
-<section class="section closing" data-reveal>
-  <h2>下一次实验，<span>从这里开始。</span></h2>
-  <div class="hero-actions">
-    <a class="button button-primary" href="学习日志/">学习日志 →</a>
   </div>
 </section>
